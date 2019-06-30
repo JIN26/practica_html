@@ -4,4 +4,7 @@
  * and open the template in the editor.
  */
 
+var nombre = prompt("Cual es tu nombre?");
+
+alert("Tu nombre es: nombre");
 
