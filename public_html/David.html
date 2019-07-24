@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Function start</title>
+    <style>
+      .msgBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 242px;
+        background: #eee;
+        border: 3px solid rgba(0, 0, 0, 0.5);
+      }
+
+      .msgBox p {
+        line-height: 1.5;
+        padding: 10px 20px;
+        color: #333;
+        padding-left: 82px;
+        background-position: 25px center;
+        background-repeat: no-repeat;
+      }
+
+      .msgBox button {
+        background: none;
+        border: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.1rem;
+        color: #aaa;
+      }
+
+      #msg-text:invalid {
+        box-shadow: 0 0 5px 1px red;
+      }
+
+      #msg-text:focus:invalid {
+        box-shadow: none;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1><code>alert()</code> replacement:</h1>
+      <form autocomplete="off">
+        <div class="box-text">
+          <label for="msg-text">Enter the message text:</label>
+          <input type="text" id="msg-text" name="msg-text" required minlength="1">
+        </div>
+        <div class="box-type">
+          <fieldset>
+            <legend>Select the message type:</legend>
+
+            <input type="radio" id="normal" name="msg-type" checked>
+            <label for="msg-type-normal">Normal</label>
+
+            <input type="radio" id="chat" name="msg-type">
+            <label for="msg-type-chat">Chat</label>
+
+            <input type="radio" id="warning" name="msg-type">
+            <label for="msg-type-warning">Warning</label>
+          </fieldset>
+        </div>
+        <button type="button">Display message box</button>
+      </form>
+    </main>
+    <footer>
+      <hr>
+      <h1>Build a function: <code>alert()</code> replacement</h1>
+      <p> This is an extension of <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Build_your_own_function">this exercise of the MDN JavaScript tutorial</a></p>
+      <h2>Differences from the original exercise</h2>
+      <ul>
+        <li>There is a text input to customize the alert message..</li>
+        <li>There are some radio buttons to select the message type. I used some events for that.</li>
+        <li>The page validates that there is text in the text field. If there is not text, it does not show the alert window.</li>
+      </ul>
+      <p id="funny-note">It was funny to use events to extend the original exercise :)</p>
+    </footer> 
+
+    <script>
+      function displayMessage(msgText, msgType) {
+        if (msgText !== '') {
+          var html = document.querySelector('html');
+
+          var panel = document.createElement('div');
+          panel.setAttribute('class', 'msgBox');
+          html.appendChild(panel);
+
+          var msg = document.createElement('p');
+          msg.textContent = msgText;
+          panel.appendChild(msg);
+
+          var closeBtn = document.createElement('button');
+          closeBtn.textContent = 'x';
+          panel.appendChild(closeBtn);
+
+          closeBtn.onclick = function() {
+            panel.parentNode.removeChild(panel);
+          } 
+
+          if (msgType === 'warning') {
+            msg.style.backgroundImage = 'url(icons/warning.png)';
+            panel.style.backgroundColor = 'red';
+          } else if (msgType === 'chat') {
+            msg.style.backgroundImage = 'url(icons/chat.png)';
+            panel.style.backgroundColor = 'aqua';
+          } else {
+            msg.style.paddingLeft = '20px';
+          }
+        }
+      }  
+ 
+      var ctrlMsgText = document.querySelector('.box-text input');
+      var userMsgText = ctrlMsgText.value;
+      ctrlMsgText.onchange = function(e) {
+        userMsgText = e.target.value;
+      }
+
+      var ctrlMsgType = document.querySelector('.box-type fieldset')
+                                 .elements;
+
+      var userMsgType; 
+
+      function checkedBtn(e) {
+        if (e.target.checked) {
+          userMsgType = e.target.id;
+        }
+      }
+
+      for (let i = 0; i < ctrlMsgType.length; i++) {
+        ctrlMsgType.item(i).oninput = checkedBtn;
+      }
+
+      var button = document.querySelector('button');
+      button.onclick = function() {
+        displayMessage(userMsgText, userMsgType);
+      }; 
+    </script>
+  </body>
+</html>

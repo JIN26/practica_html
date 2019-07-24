@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta http-equiv="content-type" content="text/html; charset=windows-1252">
         <title>Tu Peso En Otro Planeta</title>
         <link rel="stylesheet" href="css\style.css">
-        <link rel="stylesheet" href="css\styleBase.css">
+        <!--<link rel="stylesheet" href="css\styleBase.css">-->
         <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
         .en-markup-crop-options {
             top: 18px !important;
@@ -27,9 +27,21 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <p>Hola <strong>mama ya casi</strong> aprendo</p>
         <h1>Tu Peso en Otro Planeta</h1>
-        <p>En marte pesas distinto en la tierra</p>
+        <p>
+            En marte pesas distinto en la <strong>tierra</strong>
+            Elige tu planeta <br /> 1 es Marte , 2 es Jupiter <br />
+            <input type="text" id="lugar"/>
+            <br />¿Cual es tu peso?<br />
+            <input type="text" id="peso"/>
+        </p>
+        
+        <p>
+            Cuantas lineas quieres <br />
+            <input type="text" id="linea"/>
+            <input type="button" value="Enviar" id="button"/>
+        </p>
+        <canvas width="300" height="300" id="Imagen"></canvas>
         <script src="js\comportamiento.js" ></script>
     </body>
 </html>
