@@ -4,13 +4,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="content-type" content="text/html; charset=windows-1252">
         <title>Tu Peso En Otro Planeta</title>
-        <link rel="stylesheet" href="css\style.css">
-        <!--<link rel="stylesheet" href="css\styleBase.css">-->
+        <!--<link rel="stylesheet" href="css\style.css">-->
+        <link rel="stylesheet" href="css\styleBase.css">
         <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
         .en-markup-crop-options {
             top: 18px !important;
@@ -27,9 +27,9 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <h1>Tu Peso en Otro Planeta</h1>
+        <h1><code>Tu peso en otro planeta</code></h1>
         <p>
-            En marte pesas distinto en la <strong>tierra</strong>
+            En marte pesas distinto en la <strong>tierra</strong> <br /> 
             Elige tu planeta <br /> 1 es Marte , 2 es Jupiter <br />
             <input type="text" id="lugar"/>
             <br />¿Cual es tu peso?<br />
@@ -38,10 +38,33 @@ and open the template in the editor.
         
         <p>
             Cuantas lineas quieres <br />
-            <input type="text" id="linea"/>
+            <input type="text" id="linea" required minlength="4"/>
             <input type="button" value="Enviar" id="button"/>
         </p>
         <canvas width="300" height="300" id="Imagen"></canvas>
+        
+        <form autocomplete="off">
+        <div class="box-text">
+            <label for="msg-text">Enter the message text:</label>
+            <input type="text" id="msg-text" name="msg-text" required minlength="1">
+        </div>
+        <div class="box-type">
+            <fieldset>
+                <legend>Select the message type:</legend>
+
+                <input type="radio" id="normal" name="msg-type" checked>
+                <label for="msg-type-normal">Normal</label>
+
+                <input type="radio" id="chat" name="msg-type">
+                <label for="msg-type-chat">Chat</label>
+
+                <input type="radio" id="warning" name="msg-type">
+                <label for="msg-type-warning">Warning</label>
+            </fieldset>
+            </div>
+            <button type="button">Display message box</button>
+        </form>
+        
         <script src="js\comportamiento.js" ></script>
     </body>
 </html>
