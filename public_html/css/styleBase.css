@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 body{
-    /*background-color: #AAAAFF;*/
+    background-color: #AAAAFF;
     color: white;
     font-family: Helvetica;
 }
@@ -21,10 +21,36 @@ h1{
     text-align: center;
 }
 
-input{
-    text-align: right;
+.FromInput{
+    text-align: left;
 }
 
+.FormInput-label {
+    position: absolute;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-filter: alpha(opacity=0);
+    -moz-filter: alpha(opacity=0);
+    -ms-filter: alpha(opacity=0);
+    -o-filter: alpha(opacity=0);
+    filter: alpha(opacity=0);
+    -webkit-transition: 0.2s opacity;
+    -moz-transition: 0.2s opacity;
+    -o-transition: 0.2s opacity;
+    -ms-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+    z-index: -1;
+}
+
+p{
+    width:10px;
+    height:10px;
+    border:1px solid black;
+    border-radius:3px;
+    position:absolute ;
+    background: #124555 ;
+}
+/*David*/
  .msgBox {
     position: absolute;
     top: 50%;

@@ -37,46 +37,44 @@ var y = 150;
 
 document.addEventListener("keydown", dibujarTeclado);
 var marco = document.getElementById("Imagen");
-var lienzo = (document.getElementById("Imagen")).getContext("2d");
-yFinal = (document.getElementById("Imagen")).width;
+var lienzo = marco.getContext("2d");
+yFinal = marco.width;
 
 marco.addEventListener('mousedown', marcadorPuesto);
-marco.addEventListener('mousemove', tinta);
+marco.addEventListener('mousemove', trazo);
 marco.addEventListener('mouseup', alzar);
-var pinta = "green";
-var movimiento = 5;
+var tinta = "green";
+var movimiento = false;
+
 function marcadorPuesto(){
-    movimiento = 1;
-    console.log(movimiento);
+    movimiento = true;
 }
 function alzar(){
-  movimiento = 0;
-  console.log(movimiento);
+  movimiento = false;
 }
-function tinta(evento) {
-  if (movimiento == 1) {
-    x = evento.layerX;
-    y = evento.layerY;
-    dibujarLinea(pinta.value, x, y, x-2, y-2, lienzo);
-  } else {
-    dibujarLinea(pinta.value, x, y, x-2, y-2, lienzo);
-  }
+function trazo(evento) {
+    console.log(evento);
+  if (movimiento) {
+    x = evento.offsetX;
+    y = evento.offsetY;
+    dibujarLinea(tinta, x, y, x-1, y-1, lienzo);
+  } 
 }
 var fechaNacimiento = document.getElementById("linea");
 var button = document.getElementById("button");
 
-/*button.addEventListener("click", edadActual);*/
-dibujarLinea("red", x-1, y-1, x+1, y+1, lienzo);
+button.addEventListener("click", edadActual);
+dibujarLinea(tinta, x-1, y-1, x+1, y+1, lienzo);
 
 function edadActual(){
     edad = (parseInt(fechaNacimiento.value) - 2019)*-1;
 
     for(i=0;i<yFinal;i+=yFinal/edad){
-        dibujarLinea("gray",0+i,0,yFinal-1,yFinal/edad+i,lienzo);
+        dibujarLinea(tinta,0+i,0,yFinal-1,yFinal/edad+i,lienzo);
     }
 
     for(i=0;i<yFinal;i+=yFinal/edad){
-        dibujarLinea("gray",0,0+i,yFinal/edad+i,yFinal-1,lienzo);
+        dibujarLinea(tinta,0,0+i,yFinal/edad+i,yFinal-1,lienzo);
     }
     marco("black");
 }
